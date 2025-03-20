@@ -22,3 +22,5 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Veiculo(
                FOREIGN KEY(proprietario) REFERENCES Pessoa(cpf),
                FOREIGN KEY(marca) REFERENCES Marca(id)
                );''')
+#cursor.execute(''' ALTER TABLE Veiculo 
+#               ADD motor REAL;''')
