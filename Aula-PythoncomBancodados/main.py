@@ -1,4 +1,5 @@
 import sqlite3
+from modelo import Pessoa, Marca,Veiculo
 banco = sqlite3.connect('database.db')
 cursor = banco.cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS Pessoa(cpf INTEGER PRIMARY KEY,
@@ -24,3 +25,14 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Veiculo(
                );''')
 #cursor.execute(''' ALTER TABLE Veiculo 
 #               ADD motor REAL;''')
+#query dinamica
+comando = '''INSERT INTO Pessoa(cpf,nome, nascimento, oculos)
+VALUES(?, ?, ?, ?)
+'''
+pessoa = Pessoa(92345678, "Pedro", "2000-01-30", True)
+#criar um objeto, instanciando da classe pessoa
+cursor.execute(comando, (pessoa.cpf, pessoa.nome, 
+               pessoa.nascimento, pessoa.usa_oculos))
+banco.commit()
+cursor.close()
+banco.close()
