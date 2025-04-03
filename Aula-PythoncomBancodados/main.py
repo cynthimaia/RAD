@@ -1,6 +1,8 @@
 import sqlite3
 from modelo import Pessoa, Marca,Veiculo
 banco = sqlite3.connect('database.db')
+banco.execute("PRAGMA foreign_keys=on") 
+#ativar verificacao de chaves estrangeiras
 cursor = banco.cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS Pessoa(cpf INTEGER PRIMARY KEY,
                nome TEXT NOT NULL,
@@ -71,7 +73,7 @@ comando2 = '''INSERT INTO Veiculo
 (placa, ano, cor, motor, proprietario, marca)
 VALUES (:placa, :ano, :cor, :motor, :proprietario,
 :marca)''' 
-veiculo1 = Veiculo("AABB003", "2001",  "Prata", 123456,  1, 1.0,)
+veiculo1 = Veiculo("AABB00434", "2001",  "Prata", 1234567,  1, 1.0,)
 cursor.execute(comando2, vars(veiculo1))
 
 """comando3 = '''UPDATE Pessoa SET oculos
