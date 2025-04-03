@@ -24,26 +24,26 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Veiculo(
                FOREIGN KEY(marca) REFERENCES Marca(id)
                );''')
 #cursor.execute(''' ALTER TABLE Veiculo 
-#               ADD motor REAL;''')
+            #   ADD motor REAL;''')
 #query dinamica
-comando = '''INSERT INTO Pessoa(cpf,nome, nascimento, oculos)
+"""comando = '''INSERT INTO Pessoa(cpf,nome, nascimento, oculos)
 VALUES(?, ?, ?, ?)
 '''
-#pessoa = Pessoa(92345678, "Pedro", "2000-01-30", True)
+pessoa = Pessoa(92345678, "Pedro", "2000-01-30", True)
 #criar um objeto, instanciando da classe pessoa
-#cursor.execute(comando, (pessoa.cpf, pessoa.nome, 
-              # pessoa.nascimento, pessoa.usa_oculos))
+cursor.execute(comando, (pessoa.cpf, pessoa.nome, 
+               pessoa.nascimento, pessoa.usa_oculos))
 #lista de objetos
-#pessoas = [Pessoa(1234567, "Joao", "200-01-31", True),
-      #     Pessoa(987654321008, "Maria", "1995-03-10", False)]
-#comando2 = '''INSERT INTO Pessoa 
-#(cpf, nome, nascimento, oculos) 
-#VALUES (?,?,?,?) '''
-#cursor.executemany(comando2, [(i.cpf, i.nome,
-                        #       i.nascimento,
-                        #       i.usa_oculos) 
-                         #     for i in pessoas])
-"""pessoa = Pessoa(60345676900, "Joao", 
+pessoas = [Pessoa(1234567, "Joao", "200-01-31", True),
+           Pessoa(987654321008, "Maria", "1995-03-10", False)]
+comando2 = '''INSERT INTO Pessoa 
+(cpf, nome, nascimento, oculos) 
+VALUES (?,?,?,?) '''
+cursor.executemany(comando2, [(i.cpf, i.nome,
+                               i.nascimento,
+                               i.usa_oculos) 
+                              for i in pessoas])
+pessoa = Pessoa(60345676900, "Joao", 
                 "200-01-31", True)
 comando3 = '''INSERT INTO Pessoa
 (cpf, nome, nascimento, oculos) VALUES (
@@ -51,13 +51,12 @@ comando3 = '''INSERT INTO Pessoa
 cursor.execute(comando3, {"cpf":pessoa.cpf, 
                           "nome": pessoa.nome, 
                           "nascimento": pessoa.nascimento,
-                          "usa_oculos": pessoa.usa_oculos})"""
-"""pessoa = Pessoa(603456676900,"Joao", "2001-01-31", True)
+                          "usa_oculos": pessoa.usa_oculos})
+pessoa = Pessoa(603456676900,"Joao", "2001-01-31", True)
 comando4 = '''INSERT INTO Pessoa(cpf,nome,nascimento,oculos) 
 VALUES(:cpf, :nome, :nascimento, :usa_oculos)'''
-cursor.execute(comando4, vars(pessoa))"""
-##Adicionar Marca
-"""comando1 = '''INSERT INTO Marca(nome, sigla)
+cursor.execute(comando4, vars(pessoa))
+comando1 = '''INSERT INTO Marca(nome, sigla)
  VALUES(:nome, :sigla)'''
 marca = Marca("Marca A", "MA")
 cursor.execute(comando1, vars(marca))
@@ -66,13 +65,23 @@ marca.id = cursor.lastrowid
 #linha do ultimo registro inserido no banco
 marcaB = Marca("MarcaB", "MB")
 cursor.execute(comando1,vars(marcaB))
-marcaB.id = cursor.lastrowid"""
-#veiculos
+marcaB.id = cursor.lastrowid
+#veiculos"""
 comando2 = '''INSERT INTO Veiculo 
 (placa, ano, cor, motor, proprietario, marca)
 VALUES (:placa, :ano, :cor, :motor, :proprietario,
-:marca)'''
-veiculo1 = Veiculo()
+:marca)''' 
+veiculo1 = Veiculo("AABB003", "2001",  "Prata", 123456,  1, 1.0,)
+cursor.execute(comando2, vars(veiculo1))
+
+"""comando3 = '''UPDATE Pessoa SET oculos
+ = :usa_oculos WHERE cpf = :cpf; '''
+cursor.execute(comando3, {"usa_oculos":True,
+                          "cpf": 98765432100})
+comando4 = '''DELETE FROM Veiculo WHERE
+ proprietario = :proprietario'''
+cursor.execute(comando4, {"proprietario":98765432100 } )"""
+
 banco.commit()
 cursor.close()
 banco.close()
