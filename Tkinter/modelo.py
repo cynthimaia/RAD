@@ -34,4 +34,51 @@ class AppBd():
                 cursor.close()
                 self.connect.close()
                 print("A conexao com o sqlite foi fechada!!")
+    def select_all_products(self):
+        select_query = """SELECT * FROM products"""
+        products = []
+        try:
+            cursor = self.connect.cursor()
+            cursor.execute(select_query)
+            self.products = cursor.fetchall() 
+            #recuperar todos os registros
+        except  sqlite3.Error as error:
+                print("Falha ao retornar produtos", error)
+        finally:
+            if self.connect:
+                cursor.close()
+                self.connect.close()
+                print("A conexao com o sqlite foi fechada")
+            return self.products
+    def update_product(self, id, name, price):
+        update_query = """UPDATE products SET name = ?, price = ?
+        WHERE id = ?"""
+        try:
+            cursor = self.connect.cursor()
+            cursor.execute(update_query, (name, price, id))
+            self.connect.commit()
+            print("Produto atualizado com sucesso")
+        except sqlite3.Error as error:
+            print("Falha ao atualizar o produto")
+        finally:    
+            if self.connect:
+                cursor.close()
+                self.connect.close()
+                print("A conexão com o sqlite foi fechada.")
+    def delete_product(self, id):
+        delete_query = """DELETE FROM products WHERE id=?"""
+        try:
+            cursor = self.connect.cursor()
+            cursor.execute(delete_query, id)
+            self.connect.commit()
+        except sqlite3.Error as error:
+            print("Falha ao deletar o produto")
+        finally:    
+            if self.connect:
+                cursor.close()
+                self.connect.close()
+                print("A conexão com o sqlite foi fechada.")
+        
+
+
 
