@@ -46,7 +46,7 @@ class AppBd():
         try:
             cursor = self.connect.cursor()
             cursor.execute(select_query)
-            self.products = cursor.fetchall() 
+            products = cursor.fetchall() 
             #recuperar todos os registros
         except  sqlite3.Error as error:
                 print("Falha ao retornar produtos", error)
