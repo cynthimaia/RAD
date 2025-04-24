@@ -13,7 +13,7 @@ class PrincipalBD():
        self.treeProdutos.heading("Código do produto", text= "Id: ")
        self.treeProdutos.heading("Nome", text="Nome: ")
        self.treeProdutos.heading("Preco", text="Preco: ")
-       self.treeProdutos.pack()
+       self.treeProdutos.pack() 
 
        self.nome = tk.Label(self.janela, text="Nome: ")
        self.nome.pack()
