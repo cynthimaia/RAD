@@ -1,0 +1,5 @@
+####TKINTER#####
+Em ubuntu ou macOS - 
+usar o seguinte comando: `brew install python-tk@3.9`
+se nao da erro no modulo tkinter!!
+########################################
