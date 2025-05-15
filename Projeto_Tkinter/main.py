@@ -33,6 +33,12 @@ class PrincipalBD():
        self.btnatualizar = tk.Button(self.janela, text = "atualizar", 
                                      command=self.atualizarproduto )
        self.btnatualizar.pack()
+       
+       self.btnexcluir = tk.Button(self.janela, 
+                                   text="Excluir", 
+                                   command=self.deletarProduto)
+       self.btnexcluir.pack()
+
     def exibirtela(self):
        try:
           self.treeProdutos.delete(*self.treeProdutos.get_children())

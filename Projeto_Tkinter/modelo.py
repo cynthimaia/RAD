@@ -77,7 +77,7 @@ class AppBd():
         delete_query = """DELETE FROM products WHERE id=?"""
         try:
             cursor = self.connect.cursor()
-            cursor.execute(delete_query, id)
+            cursor.execute(delete_query, (id,)) ##Faltou isso aqui, considerar o id como tupla
             self.connect.commit()
         except sqlite3.Error as error:
             print("Falha ao deletar o produto")
