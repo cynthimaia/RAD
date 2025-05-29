@@ -26,8 +26,17 @@ class Products(db.Model):
             print("Erro ao atualizar o produto", e)
     def deletar_produto(self,id):
         try:
-            db.session.query(Products)
-            .filter(Products.id == id).delete()
+            db.session.query(Products).filter(Products.id == id).delete()
             db.session.commit()
         except Exception as e:
             print("Erro ao deletar produto",e)
+    def listar_id(self, products_id):
+        try:
+            products = db.session.query(Products).filter(Products.id == products_id).all()
+            products_dict = [{"id":product.id, 
+                               "name":product.name, 
+                               "price":product.price} 
+                              for product in products] 
+            return products_dict  
+        except Exception as e: 
+            print("Erro ao listar produtos", e)  
