@@ -1,0 +1,3 @@
+Criar ambiente virtual -> python -m venv env
+Ativar ambiente virtual -> source env/bin/activate (terminal MAC ou git bash) se for windows sera -> env/Scritps/activate
+Instalar modulos -> pip install -r requeriments.txt
