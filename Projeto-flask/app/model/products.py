@@ -24,12 +24,12 @@ class Products(db.Model):
             db.session.commit()
         except Exception as e:  
             print("Erro ao atualizar o produto", e)
-    def deletar_produto(self,id):
+    def delete_products(self, id):
         try:
-            db.session.query(Products).filter(Products.id == id).delete()
-            db.session.commit()
+            db.session.query(Products).filter(Products.id==id).delete()
+            db.session.commit() #confirmar e salvar as alterações no banco de dados
         except Exception as e:
-            print("Erro ao deletar produto",e)
+            print(e)
     def listar_id(self, products_id):
         try:
             products = db.session.query(Products).filter(Products.id == products_id).all()
